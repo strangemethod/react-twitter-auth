@@ -95,7 +95,9 @@ class TwitterLogin extends Component {
         'Content-Type': 'application/json'
       }
     }).then(response => {
-      this.props.onSuccess(response);
+      return response.json();
+    }).then(function (body) {
+      this.props.onSuccess(body);
     }).catch(error => {
       return this.props.onFailure(error);
     });
